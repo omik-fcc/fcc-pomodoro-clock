@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+    crossorigin="anonymous">
+  <!-- Google Gont: Varela Round  -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+
+  <!-- Bulma CSS Framework -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css" integrity="sha256-dMQYvN6BU9M4mHK94P22cZ4dPGTSGOVP41yVXvXatws="
+    crossorigin="anonymous" />
+  <!-- Own Madness -->
+  <script src="assets/js/magic.js"></script>
+  <link rel="stylesheet" type="text/css" href="assets/css/mod.css">
+  <title>FCC Pomodoro Clock!</title>
+</head>
+
+<body>
+  <section class="hero is-light is-fullheight">
+    <!-- Hero head: will stick at the top -->
+    <div class="hero-head">
+      <!-- PLaceholder for nav -->
+    </div>
+
+    <!-- Hero content: will be in the middle -->
+    <div class="hero-body">
+      <div class="container has-text-centered">
+        <i id="logo" class="fas fa-user-clock fa-7x"></i>
+        <h1 class="title">
+          FCC Pomodoro clock!
+        </h1>
+
+        <div class="columns is-centered">
+          <div class="column is-4">
+            <div class="column notification is-warning ">
+              <h2 id="break-label" class="title">BREAK LENGTH</h2>
+              <p class="subtitle is-3">
+
+                <a id="break-increment"><i class="fas fa-arrow-up fa-props"></i></a>
+
+                <span id="break-length">5</span>
+
+                <a id="break-decrement"><i class="fas fa-arrow-down fa-props"></i></a>
+              </p>
+            </div>
+          </div>
+          <div class="column is-4">
+            <div class="column notification is-warning">
+              <h2 id="session-label" class="title">SESSION LENGTH</h2>
+              <p class="subtitle is-3">
+
+                <a id="session-increment"><i class="fas fa-arrow-up fa-props"></i></a>
+
+                <span id="session-length">25</span>
+
+                <a id="session-decrement"><i class="fas fa-arrow-down fa-props"></i></a>
+
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="columns is-centered">
+          <div class="column is-8">
+            <div class="column notification is-warning ">
+              <h2 id="timer-label" class="title">SESSION</h2>
+              <h1 id="time-left" class="title" style="font-size:4rem;">25:00</h1>
+              <span class="subtitle is-3">
+
+                <a id="start_stop"><i class="fas fa-play fa-props"></i></a>
+
+                <a id="pause"><i class="fas fa-pause fa-props"></i></a>
+
+                <a id="reset"><i id="reset" class="fas fa-sync-alt fa-props"></i></a>
+
+              </span>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+    <!-- Hero footer: will stick at the bottom -->
+    <div class="hero-foot">
+
+      <div class="container has-text-centered">
+        <p>
+          <p>Proudly using <a href="https://pages.github.com/" target="_blank"><strong>GitHub Pages</strong></a>,
+            <a href="http://bulma.io" target="_blank"><strong>Bulma CSS</strong></a> and a pinch of
+            <a href="https://www.jquery.com" target="_blank"><strong>jQuery</strong></a>.<br>
+            <a href="https://omik.github.io" target="_blank"><strong>omik.github.io</strong></a>
+          </p>
+      </div>
+
+    </div>
+  </section>
+
+
+</body>
+<script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+
+</html>

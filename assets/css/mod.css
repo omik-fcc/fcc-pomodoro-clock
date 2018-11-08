@@ -1,0 +1,12 @@
+body {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+i.fa-props:hover {
+  color:rgb(0, 83, 0);
+}
+
+a {
+  text-decoration: none;
+}
+
