@@ -5,113 +5,122 @@ $("document").ready(function () {
 });
 
 let timeleft = 0;
-let brk = 300;
-let sess = 1500;
-let toCheck = 0;
+let bLen = 300;
+let sLen = 1500;
 let isRunning = false;
+let isBreak = false;
 let pomoRun = "";
+let num = 1500;
 let horn = new Audio('assets/audio/horn.mp3');
 
 function handler(k) {
     var button = k.target.parentElement.id;
 
-    console.log("has pulsao: " + button);
+    console.log("clicked: " + button);
     switch (button) {
         case ("start_stop"):
+
             if (isRunning == false) {
                 isRunning = true;
-                console.log("activo el pomodorcio");
-                pomodoro(brk, sess);
+                pomoCounter(num);
             } else {
                 clearInterval(pomoRun);
-                sess = timeleft;
+                num = timeleft;
                 isRunning = false;
             }
             break;
         case ("pause"):
             clearInterval(pomoRun);
-            sess = timeleft;
+            num = timeleft;
             isRunning = false;
             break;
         case ("reset"):
             clearInterval(pomoRun);
-            sess = 1500;
-            brk = 300;
+            sLen = 1500;
+            bLen = 300;
             isRunning = false;
+            isBreak = false
             $("#time-left").text("25:00");
             $("#break-length").text("5");
             $("#session-length").text("25");
             horn.play();
             break;
         case ("break-increment"):
-            brk = brk + 60;
-            console.log(brk);
-            $("#break-length").text(brk / 60);
+            if (bLen < 3600) {
+                bLen = bLen + 60;
+                console.log(bLen);
+            } else {
+                blen = 3600;
+            }
+            $("#break-length").text(bLen / 60);
             break;
         case ("break-decrement"):
-            if (brk > 0) {
-                brk = brk - 60;
-                console.log(brk);
+            if (bLen > 60) {
+                bLen = bLen - 60;
+                console.log(bLen);
             } else {
-                brk = 0;
+                bLen = 60;
             }
-            $("#break-length").text(brk / 60);
+            $("#break-length").text(bLen / 60);
             break;
         case ("session-increment"):
-            sess = sess + 60;
-            console.log(sess);
-            $("#session-length").text(sess / 60);
-            $("#time-left").text(Math.floor(sess / 60) + ":00");
+            if (sLen < 3600) {
+                sLen = sLen + 60;
+                num = sLen;
+                console.log(sLen);
+            } else {
+                sLen = 3600;
+                num = sLen;
+            }
+            $("#session-length").text(sLen / 60);
+            $("#time-left").text(Math.floor(sLen / 60) + ":00");
             break;
         case ("session-decrement"):
-            if (sess > 0) {
-                sess = sess - 60;
-                console.log(sess);
+            if (sLen > 60) {
+                sLen = sLen - 60;
+                num = sLen;
+                console.log(sLen);
             } else {
-                sess = 0;
+                sLen = 60;
+                num = sLen;
             }
-            $("#session-length").text(sess / 60);
-            $("#time-left").text(Math.floor(sess / 60) + ":00");
+            $("#session-length").text(sLen / 60);
+            $("#time-left").text(Math.floor(sLen / 60) + ":00");
             break;
     }
 }
 
-function pomodoro(brk, sess) {
-    timeleft = sess;
-    brk = brk;
-    toCheck = timeleft - brk;
-    console.log("tocheck is: " + toCheck);
+function pomodoro() {
+    if (isBreak == false) {
+        console.log("entering break");
+        $("#time-left").text("ENTERING BREAK")
+        $("#timer-label").text("BREAK");
+        horn.play();
+        isBreak = true;
+        pomoCounter(bLen);
+    } else {
+        console.log("back to session")
+        $("#time-left").text("BACK TO SESSION")
+        $("#timer-label").text("SESSION");
+        isBreak = false;
+        pomoCounter(sLen);
+    }
+}
+
+function pomoCounter(num) {
+    timeleft = num;
+
     pomoRun = setInterval(function () {
-        pomoBreak();
         timeleft--;
         //console.log(timeleft)
         var minutes = Math.floor(timeleft / 60);
         var seconds = timeleft - minutes * 60;
-        console.log(minutes + ":" + seconds);
-        $("#time-left").text(minutes + ":" + seconds);
+        var twoDigitsSecs = seconds.toLocaleString(undefined,{minimumIntegerDigits: 2});
+        $("#time-left").text(minutes + ":" + twoDigitsSecs);
+        console.log(minutes + ":" + twoDigitsSecs);
         if (timeleft < 0) {
             clearInterval(pomoRun);
-            $("#time-left").text("25:00");
-            isRunning = false;
+            pomodoro();
         }
     }, 1000);
 }
-
-function pomoBreak() {
-
-    if (timeleft === toCheck) {
-        console.log("llegamos al break!");
-        $("#logo").css("color", "forestgreen");
-        horn.play();
-        $("#logo").css("color", "");
-        toCheck = timeleft - brk;
-    }
-}
-
-/**
-function pausePomo() {
-    clearInterval(pomoRun);
-    sess = timeleft;
-    isRunning = false;
-}
-**/
